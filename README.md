@@ -1,2 +1,2 @@
 # NANONANDFLASH-HTML
-나의 html이다 어쩔티비 ㅋㅋㄹㅃㅃ
+나도 프론트엔드 개발자가 될꺼야!
