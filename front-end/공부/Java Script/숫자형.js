@@ -11,8 +11,8 @@ let double = 10.12;
 
 console.log(negative, indices, double);
 
-let IsInfinity = 10/0;
-let IsNaN = 10/"칠";
+let IsInfinity = 10 / 0;
+let IsNaN = 10 / "칠";
 
 console.log(IsInfinity, IsNaN);
 
