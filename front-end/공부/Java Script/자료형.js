@@ -6,4 +6,11 @@ let undi = undefined; // undefined
 let nul = null; // null(object)
 let symbol = Symbol(); // symbol
 
-console.log(typeof(Symbol()))
+//console.log(typeof(Symbol()))
+
+//참조타입
+let array = []; //배열
+let obj = {}; // 객체
+let func = function(){}; // 함수
+
+console.log(typeof(func))
