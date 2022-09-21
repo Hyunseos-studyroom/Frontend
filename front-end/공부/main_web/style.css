@@ -15,3 +15,9 @@
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url(images/room.jpg);
 }
+
+.container .header {
+    width: 80%;
+    height: 80px;
+    margin:0 auto;
+}
