@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+      }
+      header {
+        border-bottom: 1px solid red;
+        padding-left: 20px;
+      }
+      footer {
+        border-top: 1px solid red;
+        text-align: center;
+        padding: 20px;
+      }
+      .content {
+        display: flex;
+      }
+      .content nav {
+        border-right: 1px solid red;
+      }
+      .content aside {
+        border-left: 1px solid red;
+      }
+      nav,
+      aside {
+        flex-basis: 150px;
+        flex-shrink: 0;
+      }
+      main {
+        padding: 10px0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>정삼복</h1>
+      </header>
+      <section class="content">
+        <nav>
+          <ul>
+            <li>html</li>
+            <li>css</li>
+            <li>javascript</li>
+          </ul>
+        </nav>
+        <main>정삼복은 정현서다</main>
+        <aside>AD</aside>
+      </section>
+      <footer>
+        <a href="https://github.com/NANONANDFLASH">홈페이지</a>
+      </footer>
+    </div>
+  </body>
+</html>
