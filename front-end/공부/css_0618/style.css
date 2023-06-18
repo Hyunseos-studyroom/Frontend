@@ -1,0 +1,24 @@
+.container {
+  background: beige;
+  height: 100vh;
+  display: flex;
+}
+
+.item {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+}
+
+.item1 {
+  background: red;
+  align-self: center;
+}
+.item2 {
+  background: pink;
+  flex-grow: 1;
+}
+.item3 {
+  background: purple;
+  flex-grow: 1;
+}
