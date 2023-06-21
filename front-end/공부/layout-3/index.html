@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>layout-3</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="header" id="clearfix">
+        <div class="logo">
+          <h1>로고</h1>
+        </div>
+        <div class="nav" id="clearfix">
+          <ul class="mainmenu" id="clearfix">
+            <li>
+              <a href="#">MainMenu-1</a>
+              <ul class="submenu">
+                <li><a href="#">Submenu-1</a></li>
+                <li><a href="#">Submenu-2</a></li>
+                <li><a href="#">Submenu-3</a></li>
+                <li><a href="#">Submenu-4</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">MainMenu-2</a>
+              <ul class="submenu">
+                <li><a href="#">Submenu-1</a></li>
+                <li><a href="#">Submenu-2</a></li>
+                <li><a href="#">Submenu-3</a></li>
+                <li><a href="#">Submenu-4</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">MainMenu-3</a>
+              <ul class="submenu">
+                <li><a href="#">Submenu-1</a></li>
+                <li><a href="#">Submenu-2</a></li>
+                <li><a href="#">Submenu-3</a></li>
+                <li><a href="#">Submenu-4</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">MainMenu-4</a>
+              <ul class="submenu">
+                <li><a href="#">Submenu-1</a></li>
+                <li><a href="#">Submenu-2</a></li>
+                <li><a href="#">Submenu-3</a></li>
+                <li><a href="#">Submenu-4</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="banner" id="clearfix">
+        <h1>이미지 슬라이드</h1>
+      </div>
+      <div class="content" id="clearfix">
+        <div class="index">
+          <h1>공지사항</h1>
+        </div>
+        <div class="gallery">
+          <h1>갤러리</h1>
+        </div>
+        <div class="popup">
+          <h1>팝업</h1>
+        </div>
+      </div>
+      <div class="footer" id="clearfix">
+        <div class="logo2">
+          <h1>로고</h1>
+        </div>
+        <div class="copyright">
+          <h1>Copyright</h1>
+        </div>
+        <div class="sns">
+          <h1>SNS</h1>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script>
+      $(".nav > ul > li").mouseover(function () {
+        $(this).find(".submenu").stop().slideDown(200);
+      });
+      $(".nav > ul > li").mouseout(function () {
+        $(this).find(".submenu").stop().slideUp(200);
+      });
+    </script>
+  </body>
+</html>
