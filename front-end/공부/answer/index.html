@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹디 딴다 슈발</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="header" id="clearfix">
+            <div class="head1">
+                <h1>로고</h1>
+            </div>
+            <div class="nav" id="clearfix">
+                <ul>
+                    <li><a href="#">Menu-1</a>
+                        <ul class="submenu">
+                            <li><a href="#">SubMenu-1</a></li>
+                            <li><a href="#">SubMenu-2</a></li>
+                            <li><a href="#">SubMenu-3</a></li>
+                            <li><a href="#">SubMenu-4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Menu-2</a>
+                        <ul class="submenu">
+                            <li><a href="#">SubMenu-1</a></li>
+                            <li><a href="#">SubMenu-2</a></li>
+                            <li><a href="#">SubMenu-3</a></li>
+                            <li><a href="#">SubMenu-4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Menu-3</a>
+                        <ul class="submenu">
+                            <li><a href="#">SubMenu-1</a></li>
+                            <li><a href="#">SubMenu-2</a></li>
+                            <li><a href="#">SubMenu-3</a></li>
+                            <li><a href="#">SubMenu-4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Menu-4</a>
+                        <ul class="submenu">
+                            <li><a href="#">SubMenu-1</a></li>
+                            <li><a href="#">SubMenu-2</a></li>
+                            <li><a href="#">SubMenu-3</a></li>
+                            <li><a href="#">SubMenu-4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="banner"></div>
+        <div class="content" id="clearfix">
+            <div class="cont1">
+                <div class="tab-menu" id="clearfix">
+                    <div class="tab-btn" id="clearfix">
+                        <ul>
+                            <li class="active"><a href="#">공지사항1</a></li>
+                            <li><a href="#">공지사항2</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-cont">
+                        <div>
+                            1.Tab Menu DESC<br>
+                            2.Tab Menu DESC<br>
+                            3.Tab Menu DESC<br>
+                        </div>
+                        <div>
+                            2.Tab Menu DESC<br>
+                            2.Tab Menu DESC<br>
+                            2.Tab Menu DESC<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont2">
+                <h1>갤러리</h1>
+            </div>
+            <div class="cont3">
+                <h1>팝업</h1>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        $(".nav > ul > li").mouseover(function(){
+            $(this).find(".submenu").stop().slideDown(200);
+        });
+        $(".nav > ul > li").mouseout(function(){
+            $(this).find(".submenu").stop().slideUp(200);
+        });
+
+        var tabBtn = $(".tab-btn > ul > li");
+        var tabCont = $(".tab-cont > div");
+
+        tabCont.hide().eq(0).show();
+
+        tabBtn.click(function(e){
+            e.preventDefault();
+            var target = $(this);
+            var index = target.index();
+            tabBtn.removeClass("active");
+            target.addClass("active");
+            tabCont.css("display", "none");
+            tabCont.eq(index).css("display", "block");
+        })
+    </script>
+</body>
+</html>
