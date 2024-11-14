@@ -188,3 +188,78 @@ interface ToyCar extends Toy, Car {
 }
 ```
 두개의 `interface`를 `extends`해서 새로운 `interface`를 만들 수도 있다.
+
+# 함수
+```typescript
+function hello(name?: string) {
+    return `Hello ${name || "world"}`
+}
+
+function hello2(name = "world") {
+    return `Hello ${name}`
+}
+
+const result = hello();
+const result2 = hello2();
+```
+함수도 `optional`이 가능하다. 마찬가지로 `?`를 적어주면 됨
+
+```typescript
+function hello(age?:number, name:string): string {
+    if (age !== undefined) {
+        return `Hello, ${name}. You are ${age}.`
+    } else {
+        return `Hello, ${name}`
+    }
+}
+```
+`optional`한 매개변수를 앞에 쓰면 안됨
+
+```typescript
+function add(...nums:number[]): number {
+    return nums.reduce((acc, curr) => acc + curr, 0);
+}
+
+add(1, 2, 3, 4, 5);
+```
+나머지 매개변수도 결국엔 배열형이니까 배열을 매개변수의 타입으로 지정한다.
+
+```typescript
+interface User {
+    name: string;
+}
+
+const Sam: User = {name: "Sam"};
+
+function showName(this:User){
+    console.log(this.name)
+}
+
+const a = showName.bind(Sam);
+a(); // Sam
+```
+`this`의 타입은 매개변수가 있어도 가장 앞에 적어주면 된다. ~~`event`도 마찬가지이지 않을까..~~
+
+```typescript
+interface User {
+    name: string;
+    age: number;
+}
+
+function join(name: string, age: number) : User;
+function join(name: string, age: string) : string;
+function join(name:string, age: number | string): User | string {
+    if (typeof age === 'number') {
+        return {
+            name,
+            age,
+        };
+    } else {
+        return "나이는 숫자로 입력하세요."
+    }
+}
+
+const sam : User = join("Sam", 30);
+const jane : string = join("Jane", "30");
+```
+타입에 대해서 동기처리를 해주어도 매개변수와 리턴 타입이 확정된 것이 아니기 때문에 함수를 오버로드 해주어야한다.

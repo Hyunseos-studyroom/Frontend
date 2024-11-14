@@ -1,52 +1,20 @@
-interface Car {
-    color: string;
-    wheels: number;
-    start(): void;
-}
-
-interface Benz extends Car {
-    door: number,
-    stop(): void;
-}
-
-const benz : Benz = {
-    color : "silver",
-    wheels : 4,
-    start() {
-        console.log("Benz started");
-    },
-    stop() {
-        console.log("Benz stopped");
-    },
-    door: 2,
-}
-
-class Ferrari implements Car {
-    color;
-    wheels = 4;
-    constructor(c: string) {
-        this.color = c;
-    }
-    start() {
-        console.log("Ferrari started");
-    }
-}
-
-const f = new Ferrari("red");
-f.start()
-
-
-interface Car {
-    color: string,
-    wheels: number,
-    start(): void,
-}
-
-interface Toy {
+interface User {
     name: string;
-    company: string;
+    age: number;
 }
 
-interface ToyCar extends Toy, Car {
-    price: number
+function join(name: string, age: number) : User;
+function join(name: string, age: string) : string;
+function join(name:string, age: number | string): User | string {
+    if (typeof age === 'number') {
+        return {
+            name,
+            age,
+        };
+    } else {
+        return "나이는 숫자로 입력하세요."
+    }
 }
+
+const sam : User = join("Sam", 30);
+const jane : string = join("Jane", "30");
