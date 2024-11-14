@@ -72,3 +72,119 @@ let kkk = undefined;
 let ggg = null;
 ```
 `undefined`는 말그대로 타입이 정의되지 않은 것 이고, `null`은 비었다는 뜻이다.
+
+# 인터페이스
+```typescript
+let user:object;
+
+user = {
+    name: 'xx',
+    age: 30,
+}
+
+console.log(user.name);
+```
+오브젝트는 `object`형으로 선언할 수 있다. 하지만 `object`안에 값을 이야기를 선언하지 않아서 직접 사용할 수 없다.
+
+```typescript
+type Score = 'A' | 'B' | 'C' | 'D' | 'E';
+
+interface User {
+    name: string;
+    age: number;
+    gender?: string;
+    readonly birthYear : number;
+    [grade:number] : Score;
+}
+
+let user : User = {
+    name: 'xx',
+    age: 30,
+    birthYear : 2000,
+    1:'A',
+    2:'B',
+    3:'C',
+}
+
+user.age = 10
+user.gender = 'Poclain'
+
+console.log(user.name);
+```
+`interface`를 사용해서 `object`안에 데이터의 타입을 선언할 수 있다.<br>
+모든 객체에서 필요하지 않은 값은 `key?` 뒤에 `?`을 적어서 `optional`하게 할 수 있다.<br>
+`readonly`를 적어 읽기 전용으로 사용할 수 있다.<br>
+`type`을 사용해서 리터럴을 정해줄 수 있다.<br>
+`[key:type] : type`으로 `map`을 사용할 수 있다.
+
+```typescript
+interface Add {
+    (num1:number, num2:number): number;
+}
+
+const add : Add = function (x, y) {
+    return x + y;
+}
+```
+`interface`를 사용해서 함수를 정의 할 수 있다.<br>
+`(매개변수:type) : 반환타입`이런식으로 `interface`를 선언할 수 있다.
+
+```typescript
+interface Car {
+    color: string;
+    wheels: number;
+    start(): void;
+}
+
+class Ferrari implements Car {
+    color;
+    wheels = 4;
+    constructor(c: string) {
+        this.color = c;
+    }
+    start() {
+        console.log("Ferrari started");
+    }
+}
+
+const f = new Ferrari("red");
+f.start()
+```
+`interface`를 사용해 `class`를 만들 수 있다.
+```typescript
+interface Benz extends Car {
+    door: number,
+    stop(): void;
+}
+
+const benz : Benz = {
+    color : "silver",
+    wheels : 4,
+    start() {
+        console.log("Benz started");
+    },
+    stop() {
+        console.log("Benz stopped");
+    },
+    door: 2,
+}
+```
+`extends`를 사용해서 `interface`를 사용해 새로운 `interface`를 만들 수 있다.
+
+```typescript
+interface Car {
+    color: string,
+    wheels: number,
+    start(): void,
+}
+
+interface Toy {
+    name: string;
+    company: string;
+}
+
+interface ToyCar extends Toy, Car {
+    price: number
+}
+```
+두개의 `interface`를 `extends`해서 새로운 `interface`를 만들 수도 있다.
