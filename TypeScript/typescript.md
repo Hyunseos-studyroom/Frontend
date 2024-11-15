@@ -263,3 +263,69 @@ const sam : User = join("Sam", 30);
 const jane : string = join("Jane", "30");
 ```
 타입에 대해서 동기처리를 해주어도 매개변수와 리턴 타입이 확정된 것이 아니기 때문에 함수를 오버로드 해주어야한다.
+
+# 리터럴, 유니온/교차 타입
+```typescript
+const userName1 = "Bob";
+let userName2 = "Tom";
+
+type Job = "police" | "developer" | "teacher";
+
+interface User {
+    name : string;
+    job: Job;
+}
+
+const user : User = {
+    name : "Bob",
+    job: "developer"
+}
+```
+리터럴은 문자 그 자체라는 뜻이다. 변수의 값이 값 그대로 이런거
+
+```typescript
+interface Car {
+    name: "car";
+    color: string;
+    start(): void;
+}
+
+interface Mobile {
+    name: "mobile";
+    color: string;
+    call(): void;
+}
+
+function getGift(gift: Car | Mobile) {
+    console.log(gift.color);
+    if (gift.name === "car") {
+        gift.start()
+    } else {
+        gift.call()
+    }
+}
+```
+유니온 타입(Union Type)이란 자바스크립트의 OR 연산자(||)와 같이 A이거나 B이다 라는 의미의 타입이다.<br>
+그래서 둘다 `color`를 가지고있어서 확인을 안해줘도 사용할 수 있지만 각각의 인터페이스가 다르게 가지고 있는 타입은 확인을 해줘야한다.
+
+```typescript
+interface Car {
+    name: string;
+    start(): void;
+}
+
+interface Toy {
+    name: string;
+    color: string;
+    price: number;
+}
+
+const toyCar: Toy & Car = {
+    name: "ToyCar",
+    start: () => console.log("ToyCar started"),
+    color: "Red",
+    price: 10000,
+}
+```
+교차타입은 여러개의 타입을 하나로 묶어주는 것 이다.<br>
+즉 유니온은 `or`, 교차는 `and`이다.

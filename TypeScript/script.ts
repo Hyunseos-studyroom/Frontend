@@ -1,20 +1,17 @@
-interface User {
+interface Car {
     name: string;
-    age: number;
+    start(): void;
 }
 
-function join(name: string, age: number) : User;
-function join(name: string, age: string) : string;
-function join(name:string, age: number | string): User | string {
-    if (typeof age === 'number') {
-        return {
-            name,
-            age,
-        };
-    } else {
-        return "나이는 숫자로 입력하세요."
-    }
+interface Toy {
+    name: string;
+    color: string;
+    price: number;
 }
 
-const sam : User = join("Sam", 30);
-const jane : string = join("Jane", "30");
+const toyCar: Toy & Car = {
+    name: "ToyCar",
+    start: () => console.log("ToyCar started"),
+    color: "Red",
+    price: 10000,
+}
