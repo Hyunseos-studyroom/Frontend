@@ -1,17 +1,18 @@
-interface Car {
-    name: string;
-    start(): void;
-}
-
-interface Toy {
-    name: string;
+abstract class Car {
     color: string;
-    price: number;
+    constructor(color: string) {
+        this.color = color;
+    }
+    start() {
+        console.log("start");
+    }
+    abstract drive(): void;
 }
 
-const toyCar: Toy & Car = {
-    name: "ToyCar",
-    start: () => console.log("ToyCar started"),
-    color: "Red",
-    price: 10000,
+class Bmw extends Car {
+    constructor(color: string) {
+        super(color);
+    }
 }
+
+const z4 = new Bmw("Black");

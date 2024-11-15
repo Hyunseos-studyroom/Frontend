@@ -329,3 +329,93 @@ const toyCar: Toy & Car = {
 ```
 교차타입은 여러개의 타입을 하나로 묶어주는 것 이다.<br>
 즉 유니온은 `or`, 교차는 `and`이다.
+
+# 클래스
+```typescript
+class Car {
+    // color: string;
+    constructor(public color: string){
+        this.color = color;
+    }
+    start() {
+        console.log('start');
+    }
+}
+
+const bmw = new Car("red");
+```
+타입스크립트에서 클래스에 매개변수를 사용하려면 무조건 위에서 선언을 해주거나 `public`, `readonly`를 앞에 붙여줘야한다.
+
+```typescript
+class Car {
+    private name: string = "Car";
+    color: string;
+    constructor(color: string) {
+        this.color = color;
+    }
+    start() {
+        console.log("start");
+    }
+}
+```
+`private`를 사용하면 자식객체에서 사용할 수 없게된다.
+
+```typescript
+class Car {
+    protected name: string = "Car";
+    color: string;
+    constructor(color: string) {
+        this.color = color;
+    }
+    start() {
+        console.log("start");
+    }
+}
+```
+`protected`는 자식클래스에선 참조할 수 있으나 다른 곳에서 참조할 수 없다.
+
+| 참조 | public | private | protected |
+|----|--------|---------|-----------|
+| 부모 | O      | O       | O         |
+| 자식 | O      | X       | O         |
+| 변수 | O      | X       | X         |
+
+```typescript
+class Car {
+    protected name: string = "Car";
+    color: string;
+    static wheels = 4;
+    constructor(color: string) {
+        this.color = color;
+    }
+    start() {
+        console.log("start");
+        console.log(Car.wheels)
+    }
+}
+```
+`static`은 정적 타입이기 때문에 본인에서도 `this`가 아닌 클래스명을 적어야한다.
+
+```typescript
+abstract class Car {
+    color: string;
+    constructor(color: string) {
+        this.color = color;
+    }
+    start() {
+        console.log("start");
+    }
+    abstract drive(): void;
+}
+
+class Bmw extends Car {
+    constructor(color: string) {
+        super(color);
+    }
+    drive() {
+        console.log("drvie");
+    }
+}
+```
+`abstract`를 사용하면 추상화를 할 수 있다.<br>
+추상화는 추상적으로 클래스를 선언하고, 자식 클래스에서 각 property에서 구현을 해줘야한다
