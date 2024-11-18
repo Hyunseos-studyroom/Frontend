@@ -468,3 +468,103 @@ showName(user);
 showName(car);
 ```
 `extends`를 사용해서 객체 안에 데이터를 참조해올 수 있다.
+
+# 유틸리티 타입
+```typescript
+interface User {
+    id: number;
+    name: string;
+    age: number;
+    gender: "m" | "f";
+}
+
+type UserKey = keyof User;
+
+const uk: UserKey = "age";
+```
+`keyof`는 인터페이스에 있는 키의 값들을 불러올 수 있다.
+
+```typescript
+let admin: Partial<User> = {
+    id: 1,
+    name: "Bob"
+}
+```
+`Partial`은 모든 키를 `optional`로 바꿔준다.
+
+```typescript
+let admin: Required<User> = {
+    id: 1,
+    name: "Bob",
+    age: 20,
+    gender: "m"
+}
+```
+`Required`는 모든 키를 필수로 바꿔준다.
+
+```typescript
+let admin: Readonly<User> = {
+    id: 1,
+    name: "admin",
+    age: 30,
+    gender: "m",
+}
+
+admin.id = 4;
+```
+`Readonly`는 처음에 선언한 다음 값을 변경할 수 없게된다.
+
+```typescript
+type Grade = 1|2|3|4;
+type Score = "A" | "B" | "C" | "D";
+
+const score: Record<Grade, Score> = {
+    1: "A",
+    2: "B",
+    3: "C",
+    4: "D",
+};
+```
+`Record<K, T>`를 사용하면 새로운 객체에 `Key`와 `Type`을 따로 지정해주고 선언할 수 있다.
+
+```typescript
+interface User {
+    id: number;
+    name: string;
+    age: number;
+    gender: "M" | "W";
+}
+
+const admin: Pick<User, "id" | "name"> = {
+    id: 1,
+    name: "admin"
+}
+```
+`Pick<T, K>`를 사용하면 `interface`에 특정 프로퍼티만 사용할 수 있다.
+
+```typescript
+interface User {
+    id: number;
+    name: string;
+    age: number;
+    gender: "M" | "W";
+}
+
+const admin: Omit<User, "age" | "gender"> = {
+    id: 1,
+    name: "admin"
+}
+```
+반대로 `Omit`을 사용하면 `interface`에서 특정 프로퍼티만 제외할 수 있다.
+
+```typescript
+type T1 = string | number | boolean;
+type T2 = Exclude<T1, number>;
+```
+`Exclude`를 사용하면 특정 타입만 제외하고, 타입을 넣을 수 있다.
+
+```typescript
+type T1 = string | null | undefined | void;
+type T2 = NonNullable<T1>
+```
+`NonNullable`를 사용하면 `null`, `undefined`, `void` 같은 안정해져있거나 값이 비어있는 타입들을 지워준다.
