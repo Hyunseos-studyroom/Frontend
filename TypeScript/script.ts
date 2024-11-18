@@ -1,18 +1,25 @@
-abstract class Car {
+interface User {
+    name: string;
+    age: number;
+}
+
+interface Car {
+    name: string;
     color: string;
-    constructor(color: string) {
-        this.color = color;
-    }
-    start() {
-        console.log("start");
-    }
-    abstract drive(): void;
 }
 
-class Bmw extends Car {
-    constructor(color: string) {
-        super(color);
-    }
+interface Book {
+    price: number;
 }
 
-const z4 = new Bmw("Black");
+const user: User = { name: "a", age: 10};
+const car: Car = { name: "bmw", color: "red"}
+const book: Book = { price: 3000 }
+
+function showName<T extends { name: string }>(data: T): string {
+    return data.name;
+}
+
+showName(user);
+showName(car);
+showName(book);

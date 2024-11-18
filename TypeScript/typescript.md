@@ -419,3 +419,52 @@ class Bmw extends Car {
 ```
 `abstract`를 사용하면 추상화를 할 수 있다.<br>
 추상화는 추상적으로 클래스를 선언하고, 자식 클래스에서 각 property에서 구현을 해줘야한다
+
+# 제네릭
+```typescript
+function getSize<T>(arr: T[]): number {
+    return arr.length;
+}
+
+const arr = [1,2,3];
+getSize<number>(arr);
+
+const arr2 = ["a","b","c"]
+getSize<string>(arr2);
+```
+만약 들어오는 파라미터의 타입이 계속 바뀌면 제네릭 타입을 써주면 된다.<br>
+`<타입>(파라미터: 타입)`이렇게 적어주면 함수를 호출하는 쪽에서 파라미터의 타입을 정해줄 수 있다.
+
+```typescript
+interface Mobile<T> {
+    name: string;
+    price: number;
+    option: T;
+}
+
+const m1: Mobile<string> = {
+    name: 'iPhone 12',
+    price: 1000000,
+    option: 'A15 Bionic',
+}
+
+const m2: Mobile<object> = {
+    name: 'Samsung Galaxy S21',
+    price: 800000,
+    option: {
+        screenSize: '6.7 inch',
+        camera: '12 MP',
+    },
+}
+```
+`interface`에서도 사용할 수 있다.
+
+```typescript
+function showName<T extends { name: string }>(data: T): string {
+    return data.name;
+}
+
+showName(user);
+showName(car);
+```
+`extends`를 사용해서 객체 안에 데이터를 참조해올 수 있다.
